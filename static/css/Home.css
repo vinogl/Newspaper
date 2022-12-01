@@ -1,0 +1,132 @@
+body {
+    font-family: 'Droid Serif', serif;
+    font-size: 16px;
+    color: #2f2f2f;
+    background-color: #f9f7f1;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.head {
+    margin-top: 70px;
+    text-align: center;
+    position: center;
+}
+
+.head > header {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 900;
+    font-size: 80px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.subhead {
+    display: flex;
+    /*text-transform: uppercase;*/
+    letter-spacing: 2px;
+    padding: 3px 0;
+    border: solid #1c1f33;
+    border-width: 2px 0;
+}
+
+.subhead > div {
+    flex: 1;
+    padding: 8px;
+    border: solid #1c1f33;
+    border-width: 1px 0;
+}
+
+.feed_form {
+    display: inline;
+}
+
+.feed_form > label > select {
+    /* 这个标签不能按照body样式显示，把body的样式抄过来 */
+    font-family: 'Droid Serif', serif;
+    font-size: 16px;
+    text-align: left;
+    background-color: transparent;
+    border: 0;  /* 取消显示边框 */
+    /*appearance: none; !* 用于取消显示小三角形 *!*/
+}
+
+.art_ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 20px;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+}
+
+.art_ul > li {
+    position: relative;
+    display: inline-block;
+    padding: 28px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 38px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    line-height: normal;
+    width: 100%;
+    word-break: break-word; /* 自动换行 */
+}
+
+.art_ul > li > div {
+    margin-inline-start: 30px;
+    margin-inline-end: 30px;
+}
+
+.article_head {
+    text-align: left;
+    position: relative;
+    border-bottom: solid #1c1f33;
+    border-width: 1px;
+}
+
+.article_title {
+    font-weight: 400;
+    /*font-style: italic;!* 斜体 *!*/
+    font-size: 30px;
+    line-height: 50px;
+    box-sizing: border-box;
+}
+
+.article_author {
+    font-weight: 400;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 3px;
+}
+
+.article_format {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* 控制第几行加省略号 */
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: #2f2f2f;
+}
+
+img {
+    /* 使页面所有图面填充满 */
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/Home.css') }}">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    {# js的全局变量 #}
+    <script type="text/javascript">let lan = {{ page_info.subhead_lan | tojson }}</script>
+    {# 显示当前时间 #}
+    <script type="text/javascript" src="/static/js/time_dis.js"></script>
+    {# 下拉框选中后直接提交 #}
+    <script type="text/javascript" src="/static/js/form_submit.js"></script>
+    <title>{{ feed_key }}</title>
+</head>
+<body>
+<div class="head">
+    <header><a title="{{ original_link }}" href="{{ original_link }}">{{ feed_key }}</a></header>
+    {# 子标题 #}
+    <div class="subhead">
+        {# 显示文章的总数量 #}
+        <div>
+            <a href="/"><i class="fa fa-arrow-left"></i></a>
+            <a href="{{ page_info.github }}"><i class="fa fa-github"></i></a>
+            <i class="fa fa-hashtag"></i>
+            {{ articles | length }}
+        </div>
+        {# 显示当前时间 #}
+        <div id="times">......</div>
+        <div>
+            {# form表单，便于在文章页面切换文章，'id'用于在js中获取该form标签 #}
+            <form id="form_submit" method="post" class="feed_form">
+                <label>
+                    <i class="fa fa-paperclip"></i>
+                    {{ page_info.rss_feed | safe }}
+                </label>
+                {# 'name'用于在'app.py'中提取select标签的选中值，'onchange'当select标签内容变化调用该方法 #}
+                <label>
+                    <select name="feed_key" onchange="auto_submit()">
+                        {% for key, value in feed_list.items() %}
+                            {% if feed_key == key %}
+                                {# select标签默认显示当前feed_key信息 #}
+                                <option title="{{ value }}" value="{{ key }}" selected>{{ key }}</option>
+                            {% else %}
+                                <option title="{{ value }}" value="{{ key }}">{{ key }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </label>
+            </form>
+        </div>
+    </div>
+</div>
+<ul class="art_ul">
+    {# 文章以无序列表元素呈现 #}
+    {% for article in articles %}
+        <li>
+            <div class="article_head">
+                {# 文章头，包括：标题、作者 #}
+                <p>
+                    {# 文章的标题，点击可跳转到该文章全文 #}
+                    <a class="article_title" href="/{{ feed_key }}/{{ article.art_id }}">
+                        {{ article.title }}
+                    </a>
+                </p>
+                <p>
+                    {# 文章的作者 #}
+                    {% if article.author != None %}
+                        {# 判断：当作者信息不为空时才显示作者 #}
+                        <span class="article_author">{{ page_info.author }}{{ article.author }}</span>
+                    {% endif %}
+                </p>
+            </div>
+            <div>
+                <div class="article_format">
+                    {# 文章的内容，safe过滤器为了能正常显示变量内的html标签 #}
+                    {{ article.content | safe }}
+                </div>
+            </div>
+            <div class="container">
+                {# 文章底部的控件 #}
+                <p>
+                    {# 显示文章的时间信息 #}
+                    <i class="fa fa-history"></i>
+                    &nbsp;
+                    {{ article.time_diff }}
+                </p>
+                <a href="/{{ feed_key }}/{{ article.art_id }}">
+                    {# 链接到该文章全文 #}
+                    {{ page_info.link_to_full }}
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/Main.css') }}">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    {# js的全局变量 #}
+    <script type="text/javascript">let lan = {{ page_info.subhead_lan | tojson }}</script>
+    {# 显示当前时间 #}
+    <script type="text/javascript" src="/static/js/time_dis.js"></script>
+    <base target="_blank">
+    <title>{{ page_info.title }}</title>
+</head>
+<body>
+<div class="head">
+    <header>{{ page_info.title }}</header>
+    {# 子标题 #}
+    <div class="subhead">
+        {# 显示文章的总数量 #}
+        <div>
+            <a href="{{ page_info.github }}"><i class="fa fa-github"></i></a>
+            <i class="fa fa-hashtag"></i>
+            {{ feed_list | length }}
+        </div>
+        {# 显示当前时间 #}
+        <div id="times">......</div>
+        <div>
+        </div>
+    </div>
+</div>
+<ul>
+    {% for key, value in feed_list.items() %}
+        <li>
+            <a href="/{{ key }}" title="{{ value }}">{{ key }}</a>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
