@@ -38,6 +38,26 @@ body {
     border-width: 1px 0;
 }
 
+.subhead > div > a:hover{
+    font-size: 120%;
+}
+
+.operation_form {
+    display: inline;
+}
+
+.operation_form > button {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+}
+
+.operation_form > button:hover {
+    background-color: transparent;
+    border: none;
+    font-size: 120%;
+}
+
 ul {
     display: block;
     list-style-type: disc;

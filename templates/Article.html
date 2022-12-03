@@ -23,12 +23,12 @@
             {# form表单，便于在文章页面切换文章，'id'用于在js中获取该form标签 #}
             <form id="form_submit" method="post" class="art_form">
                 <label>
-                    <a href="/{{ feed_key }}"><i class="fa fa-arrow-left"></i></a>
-                    <a href="{{ page_info.github }}"><i class="fa fa-github"></i></a>
+                    <a href="/{{ feed_key }}" class="fa fa-arrow-left"></a>
+                    <a href="{{ page_info.github }}" title="{{ page_info.github }}" class="fa fa-github"></a>
                     <i class="fa fa-hashtag"></i>
                 </label>
-                {# 'name'用于在'app.py'中提取select标签的选中值，'onchange'当select标签内容变化调用该方法 #}
                 <label>
+                    {# 'name'用于在'app.py'中提取select标签的选中值，'onchange'当select标签内容变化调用该方法 #}
                     <select name="art_id" onchange="auto_submit()">
                         {% for art in articles %}
                             {% if art.art_id == article.art_id %}
@@ -46,7 +46,7 @@
             /{{ article.total }}
         </div>
         {# 显示当前时间 #}
-        <div id="times">......</div>
+        <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
         <div>
             {# 原文地址的链接 #}
             <a href="{{ article.link }}">

@@ -8,7 +8,6 @@
     <script type="text/javascript">let lan = {{ page_info.subhead_lan | tojson }}</script>
     {# 显示当前时间 #}
     <script type="text/javascript" src="/static/js/time_dis.js"></script>
-    <base target="_blank">
     <title>{{ page_info.title }}</title>
 </head>
 <body>
@@ -18,13 +17,19 @@
     <div class="subhead">
         {# 显示文章的总数量 #}
         <div>
-            <a href="{{ page_info.github }}"><i class="fa fa-github"></i></a>
+            <a href="{{ page_info.github }}" title="{{ page_info.github }}" class="fa fa-github"></a>
             <i class="fa fa-hashtag"></i>
             {{ feed_list | length }}
         </div>
         {# 显示当前时间 #}
-        <div id="times">......</div>
+        <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
         <div>
+            <form method="post" class="operation_form">
+                <button class="fa fa-arrow-circle-down" title="{{ page_info.download }}" name="operation" value="download"></button>
+            </form>
+            <form method="post" class="operation_form">
+                <button class="fa fa-trash" title="{{ page_info.remove }}" name="operation" value="remove"></button>
+            </form>
         </div>
     </div>
 </div>

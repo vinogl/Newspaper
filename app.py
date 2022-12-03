@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect, send_from_directory
 from feed_read import get_json, get_articles, get_feed
+from feeds_operation import download_feeds, remove_feeds
 
 app = Flask(__name__)
 
@@ -17,12 +18,20 @@ def favicon():
                                mimetype='image/vnd.microsoft.icon')
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def main_page():
     page_info = get_json(path=json_path["Pages"])  # 获取页面的相应信息
     feed_list = get_json(path=json_path["feed_list"])  # 获取RSS的订阅源信息
 
-    return render_template("Main.html", page_info=page_info, feed_list=feed_list, list_path=json_path["feed_list"])
+    if request.method == 'POST':
+        """根据返回的表单，执行对本地feed文件的相应操作"""
+        operation = request.form.get("operation")  # 获取操作
+        if operation == "download":
+            download_feeds(json_path=json_path)  # 下载所有feed内容
+        elif operation == "remove":
+            remove_feeds(json_path=json_path)  # 删除所有feed内容
+
+    return render_template("Main.html", page_info=page_info, feed_list=feed_list)
 
 
 @app.route('/<feed_key>', methods=['GET', 'POST'])
@@ -40,11 +49,6 @@ def home_page(feed_key):
     feed_list = get_json(path=json_path["feed_list"])  # 获取RSS的订阅源信息
 
     feed_path = os.path.join(json_path["feeds"], feed_key + '.json')  # 已下载订阅的路径
-
-    if not os.path.exists(feed_path):
-        """若还未下载订阅源到本地，则执行下载操作"""
-        get_feed(url=feed_list[feed_key], path=feed_path)
-
     original_link, articles = get_articles(path=feed_path)  # 获取官网url、所有文章的所需内容
 
     return render_template('Home.html', page_info=page_info, feed_key=feed_key, original_link=original_link,

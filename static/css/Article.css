@@ -38,6 +38,10 @@ body {
     border-width: 1px 0;
 }
 
+.subhead > div > a:hover{
+    font-size: 120%;
+}
+
 .art_form {
     display: inline;
 }

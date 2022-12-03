@@ -19,13 +19,13 @@
     <div class="subhead">
         {# 显示文章的总数量 #}
         <div>
-            <a href="/"><i class="fa fa-arrow-left"></i></a>
-            <a href="{{ page_info.github }}"><i class="fa fa-github"></i></a>
+            <a href="/" class="fa fa-arrow-left"></a>
+            <a href="{{ page_info.github }}" title="{{ page_info.github }}" class="fa fa-github"></a>
             <i class="fa fa-hashtag"></i>
             {{ articles | length }}
         </div>
         {# 显示当前时间 #}
-        <div id="times">......</div>
+        <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
         <div>
             {# form表单，便于在文章页面切换文章，'id'用于在js中获取该form标签 #}
             <form id="form_submit" method="post" class="feed_form">
@@ -33,8 +33,8 @@
                     <i class="fa fa-paperclip"></i>
                     {{ page_info.rss_feed | safe }}
                 </label>
-                {# 'name'用于在'app.py'中提取select标签的选中值，'onchange'当select标签内容变化调用该方法 #}
                 <label>
+                    {# 'name'用于在'app.py'中提取select标签的选中值，'onchange'当select标签内容变化调用该方法 #}
                     <select name="feed_key" onchange="auto_submit()">
                         {% for key, value in feed_list.items() %}
                             {% if feed_key == key %}
