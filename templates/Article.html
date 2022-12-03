@@ -20,37 +20,36 @@
     {# 子标题 #}
     <div class="subhead">
         <div>
+            <a href="/{{ feed_key }}" class="fa fa-arrow-left" title="{{ page_info.back }}"></a>
+            <a href="{{ page_info.github }}" title="{{ page_info.github }}" class="fa fa-github"></a>
             {# form表单，便于在文章页面切换文章，'id'用于在js中获取该form标签 #}
             <form id="form_submit" method="post" class="art_form">
-                <label>
-                    <a href="/{{ feed_key }}" class="fa fa-arrow-left"></a>
-                    <a href="{{ page_info.github }}" title="{{ page_info.github }}" class="fa fa-github"></a>
-                    <i class="fa fa-hashtag"></i>
-                </label>
-                <label>
+                <label class="fa fa-hashtag">
                     {# 'name'用于在'app.py'中提取select标签的选中值，'onchange'当select标签内容变化调用该方法 #}
                     <select name="art_id" onchange="auto_submit()">
                         {% for art in articles %}
                             {% if art.art_id == article.art_id %}
                                 {# select标签默认显示当前文章的id #}
-                                <option title="{{ art.title }}" value="{{ art.art_id }}"
-                                        selected>{{ art.art_id }}</option>
+                                <option title="{{ art.title }}" value="{{ art.art_id }}" selected>
+                                    {{ art.art_id }}
+                                </option>
                             {% else %}
-                                <option title="{{ art.title }}" value="{{ art.art_id }}">{{ art.art_id }}</option>
+                                <option title="{{ art.title }}" value="{{ art.art_id }}">
+                                    {{ art.art_id }}
+                                </option>
                             {% endif %}
                         {% endfor %}
                     </select>
+                    {# 文章的总数量 #}
+                    /{{ article.total }}
                 </label>
             </form>
-            {# 文章的总数量 #}
-            /{{ article.total }}
         </div>
         {# 显示当前时间 #}
         <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
         <div>
             {# 原文地址的链接 #}
-            <a href="{{ article.link }}">
-                <i class="fa fa-paperclip"></i>
+            <a href="{{ article.link }}" class="fa fa-paperclip">
                 {{ page_info.link_to_origin }}
             </a>
         </div>

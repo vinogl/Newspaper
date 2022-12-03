@@ -2,6 +2,8 @@
 {
   "title": "What's the News!",
   "subhead_lan": "en",
+  "back": "返回到上一级",
+  "refresh": "刷新内容",
   "github": "https://github.com/vinogl/Newspaper",
   "download": "下载所有feed内容",
   "remove": "删除已下载的feed内容",

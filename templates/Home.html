@@ -19,21 +19,20 @@
     <div class="subhead">
         {# 显示文章的总数量 #}
         <div>
-            <a href="/" class="fa fa-arrow-left"></a>
+            <a href="/" class="fa fa-arrow-left" title="{{ page_info.back }}"></a>
+            <form method="post" class="operation_form">
+                <button class="fa fa-rotate-right" title="{{ page_info.refresh }}" name="refresh" value=1></button>
+            </form>
             <a href="{{ page_info.github }}" title="{{ page_info.github }}" class="fa fa-github"></a>
-            <i class="fa fa-hashtag"></i>
-            {{ articles | length }}
+            <i class="fa fa-hashtag">{{ articles | length }}</i>
         </div>
         {# 显示当前时间 #}
         <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
         <div>
             {# form表单，便于在文章页面切换文章，'id'用于在js中获取该form标签 #}
             <form id="form_submit" method="post" class="feed_form">
-                <label>
-                    <i class="fa fa-paperclip"></i>
+                <label class="fa fa-paperclip">
                     {{ page_info.rss_feed | safe }}
-                </label>
-                <label>
                     {# 'name'用于在'app.py'中提取select标签的选中值，'onchange'当select标签内容变化调用该方法 #}
                     <select name="feed_key" onchange="auto_submit()">
                         {% for key, value in feed_list.items() %}
@@ -80,13 +79,11 @@
                 {# 文章底部的控件 #}
                 <p>
                     {# 显示文章的时间信息 #}
-                    <i class="fa fa-history"></i>
-                    &nbsp;
-                    {{ article.time_diff }}
+                    <i class="fa fa-history">&nbsp;{{ article.time_diff }}</i>
                 </p>
                 <a href="/{{ feed_key }}/{{ article.art_id }}">
                     {# 链接到该文章全文 #}
-                    {{ page_info.link_to_full }}
+                    <i class="fa">{{ page_info.link_to_full }}</i>
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div>

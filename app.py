@@ -40,15 +40,23 @@ def home_page(feed_key):
     主页，显示所有文章
     能根据前端传回的表单返回指定的订阅页面
     """
+    refresh = None  # 默认不更新feed内容
     if request.method == 'POST':
         """根据表单post信息选择feed_key"""
-        feed_key = request.form.get('feed_key')  # 获取表单返回的feed_source
-        return redirect('/%s' % feed_key)
+        _feed_key = request.form.get('feed_key')  # 获取表单返回的feed_key
+        refresh = request.form.get('refresh')  # 是否更新feed内容
+        if _feed_key is not None:  # 判断提交的表单是否为feed_key
+            return redirect('/%s' % _feed_key)
 
     page_info = get_json(path=json_path["Pages"])  # 获取页面的相应信息
     feed_list = get_json(path=json_path["feed_list"])  # 获取RSS的订阅源信息
 
     feed_path = os.path.join(json_path["feeds"], feed_key + '.json')  # 已下载订阅的路径
+
+    if not os.path.exists(feed_path) or refresh is not None:
+        """若还未下载订阅源到本地，或者提交了更新表单，则执行下载操作"""
+        get_feed(url=feed_list[feed_key], path=feed_path)
+
     original_link, articles = get_articles(path=feed_path)  # 获取官网url、所有文章的所需内容
 
     return render_template('Home.html', page_info=page_info, feed_key=feed_key, original_link=original_link,

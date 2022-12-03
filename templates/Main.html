@@ -18,8 +18,7 @@
         {# 显示文章的总数量 #}
         <div>
             <a href="{{ page_info.github }}" title="{{ page_info.github }}" class="fa fa-github"></a>
-            <i class="fa fa-hashtag"></i>
-            {{ feed_list | length }}
+            <i class="fa fa-hashtag">{{ feed_list | length }}</i>
         </div>
         {# 显示当前时间 #}
         <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
