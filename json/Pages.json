@@ -1,12 +1,16 @@
 
 {
+  "github": "https://github.com/vinogl/Newspaper",
   "title": "What's the News!",
   "subhead_lan": "en",
   "back": "返回到上一级",
   "refresh": "刷新内容",
-  "github": "https://github.com/vinogl/Newspaper",
   "download": "下载所有feed内容",
   "remove": "删除已下载的feed内容",
+  "edit": "编辑订阅源",
+  "edit_reset": "重置文档",
+  "edit_submit": "保存更改",
+  "edit_format": "填写格式 -- \"订阅的显示的标题: 订阅源的url\"（注意：\":\"后有一个空格）",
   "link_to_origin": "原文地址",
   "rss_feed": "Feeds:",
   "author": "作者：",

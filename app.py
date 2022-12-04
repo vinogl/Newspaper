@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask, render_template, request, redirect, send_from_directory
 from feed_read import get_json, get_articles, get_feed
 from feeds_operation import download_feeds, remove_feeds
@@ -20,9 +21,10 @@ def favicon():
 
 @app.route('/', methods=['GET', 'POST'])
 def main_page():
-    page_info = get_json(path=json_path["Pages"])  # 获取页面的相应信息
-    feed_list = get_json(path=json_path["feed_list"])  # 获取RSS的订阅源信息
-
+    """
+    主页面，显示所有的订阅源名字，
+    并链接到其各订阅源的home页面
+    """
     if request.method == 'POST':
         """根据返回的表单，执行对本地feed文件的相应操作"""
         operation = request.form.get("operation")  # 获取操作
@@ -31,13 +33,46 @@ def main_page():
         elif operation == "remove":
             remove_feeds(json_path=json_path)  # 删除所有feed内容
 
+    page_info = get_json(path=json_path["Pages"])  # 获取页面的相应信息
+    feed_list = get_json(path=json_path["feed_list"])  # 获取RSS订阅源信息
+
     return render_template("Main.html", page_info=page_info, feed_list=feed_list)
+
+
+@app.route('/edit', methods=['GET', 'POST'])
+def edit_feeds():
+    """
+    修改feed_list的内容
+    """
+    if request.method == 'POST':
+        """将返回表单的RSS订阅源信息，填入feed_list"""
+        list_content = list(filter(None, request.form.get("display").split('\r\n')))  # 将订阅源信息分组
+        list_json = {}  # 用于储存填入内容
+
+        for item in list_content:
+            """逐条将填入内容写入到词典"""
+            feed_key, feed_url = item.split(': ')
+            list_json.update({feed_key: feed_url})  # 将RSS订阅源信息写入词典，之后方便存入json文件
+
+        with open(json_path["feed_list"], 'w') as f:
+            """将更新的RSS的订阅源信息填入feed_list"""
+            f.write(json.dumps(list_json, ensure_ascii=False))
+
+    page_info = get_json(path=json_path["Pages"])  # 获取页面的相应信息
+    feed_list = get_json(path=json_path["feed_list"])  # 获取RSS订阅源信息
+
+    display = ''  # 用于储存在编辑框中展示的内容
+    for feed_key, feed_url in feed_list.items():
+        """将RSS订阅源信息逐行写入展示字符串"""
+        display += '%s: %s\n' % (feed_key, feed_url)
+
+    return render_template("Edit.html", page_info=page_info, display=display)
 
 
 @app.route('/<feed_key>', methods=['GET', 'POST'])
 def home_page(feed_key):
     """
-    主页，显示所有文章
+    单个订阅源的home页面，显示所有文章
     能根据前端传回的表单返回指定的订阅页面
     """
     refresh = None  # 默认不更新feed内容
@@ -49,7 +84,7 @@ def home_page(feed_key):
             return redirect('/%s' % _feed_key)
 
     page_info = get_json(path=json_path["Pages"])  # 获取页面的相应信息
-    feed_list = get_json(path=json_path["feed_list"])  # 获取RSS的订阅源信息
+    feed_list = get_json(path=json_path["feed_list"])  # 获取RSS订阅源信息
 
     feed_path = os.path.join(json_path["feeds"], feed_key + '.json')  # 已下载订阅的路径
 
