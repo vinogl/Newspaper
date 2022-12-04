@@ -24,14 +24,17 @@
             {# 显示当前时间 #}
             <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
             <div class="operation_form">
+                {# 重置按钮、提交表单按钮 #}
                 <button type="reset" class="fa fa-undo" title="{{ page_info.edit_reset }}"></button>
                 <button type="submit" class="fa fa-save" title="{{ page_info.edit_submit }}"></button>
             </div>
         </div>
     </div>
     <label>
+        {# 显示feed_list.json内容 #}
         <textarea name="display">{{ display | safe }}</textarea>
     </label>
+    {# 编辑格式提示 #}
     {{ page_info.edit_format }}
 </form>
 </body>

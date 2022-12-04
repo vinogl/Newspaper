@@ -40,7 +40,7 @@ def main_page():
 
 
 @app.route('/edit', methods=['GET', 'POST'])
-def edit_feeds():
+def edit_page():
     """
     修改feed_list的内容
     """
