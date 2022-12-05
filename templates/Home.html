@@ -79,7 +79,7 @@
                 {# 文章底部的控件 #}
                 <p>
                     {# 显示文章的时间信息 #}
-                    <i class="fa fa-history">&nbsp;{{ article.time_diff }}</i>
+                    <i class="fa fa-history" title="{{ article.time }}">&nbsp;{{ article.time_diff }}</i>
                 </p>
                 <a href="/{{ feed_key }}/{{ article.art_id }}">
                     {# 链接到该文章全文 #}

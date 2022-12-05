@@ -18,11 +18,11 @@ def time_diff(time):
         return '%d天前' % int(diff.days)
     elif diff.days >= 0:
         if diff.seconds / 3600 >= 1:
-            return '%d小时前' % int(diff.seconds / 3600)
+            return '%d小时前' % round(diff.seconds / 3600)
         elif diff.seconds / 60 >= 1:
-            return '%d分钟前' % int(diff.seconds / 60)
+            return '%d分钟前' % round(diff.seconds / 60)
         elif diff.seconds >= 0:
-            return '%d秒前' % int(diff.seconds)
+            return '%d秒前' % round(diff.seconds)
     else:
         return '未知时间'
 
