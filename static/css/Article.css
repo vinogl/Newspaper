@@ -95,6 +95,10 @@ a {
     color: #2f2f2f;
 }
 
+a:hover {
+    color: #094ec0;
+}
+
 img {
     /* 使页面所有图面填充满 */
     width: 100%;
