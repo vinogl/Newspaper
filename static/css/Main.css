@@ -53,8 +53,8 @@ body {
 }
 
 .operation_form > button:hover {
-    background-color: transparent;
-    border: none;
+    cursor: pointer;
+    color: #094ec0;
     font-size: 120%;
 }
 
@@ -90,5 +90,6 @@ a {
 }
 
 a:hover {
+    cursor: pointer;
     color: #094ec0;
 }

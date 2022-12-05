@@ -56,6 +56,11 @@ body {
     /*appearance: none; !* 用于取消显示小三角形 *!*/
 }
 
+
+.art_form > label > select:hover {
+    cursor: pointer;
+}
+
 .article {
     margin-inline-start: 0;
     margin-inline-end: 0;
@@ -96,6 +101,7 @@ a {
 }
 
 a:hover {
+    cursor: pointer;
     color: #094ec0;
 }
 

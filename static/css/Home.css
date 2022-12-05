@@ -53,8 +53,8 @@ body {
 }
 
 .operation_form > button:hover {
-    background-color: transparent;
-    border: none;
+    cursor: pointer;
+    color: #094ec0;
     font-size: 120%;
 }
 
@@ -70,6 +70,10 @@ body {
     background-color: transparent;
     border: 0;  /* 取消显示边框 */
     /*appearance: none; !* 用于取消显示小三角形 *!*/
+}
+
+.feed_form > label > select:hover {
+    cursor: pointer;
 }
 
 .art_ul {
@@ -145,6 +149,7 @@ a {
 }
 
 a:hover {
+    cursor: pointer;
     color: #094ec0;
 }
 
