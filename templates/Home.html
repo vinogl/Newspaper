@@ -30,7 +30,7 @@
         <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
         <div>
             {# form表单，便于在文章页面切换文章，'id'用于在js中获取该form标签 #}
-            <form id="form_submit" method="post" class="feed_form">
+            <form id="form_submit" method="post" class="select_form">
                 <label class="fa fa-paperclip">
                     {{ page_info.rss_feed | safe }}
                     {# 'name'用于在'app.py'中提取select标签的选中值，'onchange'当select标签内容变化调用该方法 #}
@@ -69,11 +69,9 @@
                     {% endif %}
                 </p>
             </div>
-            <div>
-                <div class="article_format">
-                    {# 文章的内容，safe过滤器为了能正常显示变量内的html标签 #}
-                    {{ article.content | safe }}
-                </div>
+            <div class="article_format">
+                {# 文章的内容，safe过滤器为了能正常显示变量内的html标签 #}
+                {{ article.content | safe }}
             </div>
             <div class="container">
                 {# 文章底部的控件 #}

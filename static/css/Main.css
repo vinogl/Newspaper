@@ -1,62 +1,5 @@
-body {
-    font-family: 'Droid Serif', serif;
-    font-size: 16px;
-    color: #2f2f2f;
-    background-color: #f9f7f1;
-    max-width: 1000px;
-    margin: auto;
-}
-
-.head {
-    margin-top: 70px;
-    text-align: center;
-    position: center;
-}
-
-.head > header {
-    text-align: center;
-    margin-bottom: 30px;
-    font-weight: 900;
-    font-size: 80px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-}
-
-.subhead {
-    display: flex;
-    /*text-transform: uppercase;*/
-    letter-spacing: 2px;
-    padding: 3px 0;
-    border: solid #1c1f33;
-    border-width: 2px 0;
-}
-
-.subhead > div {
-    flex: 1;
-    padding: 8px;
-    border: solid #1c1f33;
-    border-width: 1px 0;
-}
-
-.subhead > div > a:hover{
-    font-size: 120%;
-}
-
-.operation_form {
-    display: inline;
-}
-
-.operation_form > button {
-    background-color: transparent;
-    border: none;
-    font-size: 16px;
-}
-
-.operation_form > button:hover {
-    cursor: pointer;
-    color: #094ec0;
-    font-size: 120%;
-}
+@import "Pages.css";
+@import "Forms.css";
 
 ul {
     display: block;
@@ -82,14 +25,4 @@ ul > li {
     width: 80%;
     word-break: break-word; /* 自动换行 */
     text-align: left;
-}
-
-a {
-    text-decoration: none;
-    color: #2f2f2f;
-}
-
-a:hover {
-    cursor: pointer;
-    color: #094ec0;
 }

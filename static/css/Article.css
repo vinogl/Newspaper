@@ -1,16 +1,8 @@
-body {
-    font-family: 'Droid Serif', serif;
-    font-size: 16px;
-    color: #2f2f2f;
-    background-color: #f9f7f1;
-    max-width: 800px;
-    margin: auto;
-}
+@import "Pages.css";
+@import "Forms.css";
 
-.head {
-    margin-top: 70px;
-    text-align: center;
-    position: center;
+body {
+    max-width: 800px;
 }
 
 .head > header {
@@ -18,52 +10,11 @@ body {
     margin-bottom: 10px;
     font-weight: 700;
     font-size: 50px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-}
-
-.subhead {
-    display: flex;
-    /*text-transform: uppercase;*/
-    letter-spacing: 2px;
-    padding: 3px 0;
-    border: solid #1c1f33;
-    border-width: 2px 0;
-}
-
-.subhead > div {
-    flex: 1;
-    padding: 8px;
-    border: solid #1c1f33;
-    border-width: 1px 0;
-}
-
-.subhead > div > a:hover{
-    font-size: 120%;
-}
-
-.art_form {
-    display: inline;
-}
-
-.art_form > label > select {
-    /* 这个标签不能按照body样式显示，把body的样式抄过来 */
-    font-family: 'Droid Serif', serif;
-    font-size: 16px;
-    text-align: center;
-    background-color: transparent;
-    border: 0;  /* 取消显示边框 */
-    /*appearance: none; !* 用于取消显示小三角形 *!*/
-}
-
-
-.art_form > label > select:hover {
-    cursor: pointer;
 }
 
 .article {
-    margin-inline-start: 0;
-    margin-inline-end: 0;
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
     margin-top: 50px;
     margin-bottom: 100px;
 }
@@ -86,27 +37,10 @@ body {
     font-weight: 400;
     font-size: 18px;
     box-sizing: border-box;
-    padding: 3px;
 }
 
 .article_format {
     overflow: hidden;
     margin-top: 20px;
     margin-bottom: 10px;
-}
-
-a {
-    text-decoration: none;
-    color: #2f2f2f;
-}
-
-a:hover {
-    cursor: pointer;
-    color: #094ec0;
-}
-
-img {
-    /* 使页面所有图面填充满 */
-    width: 100%;
-    height: 100%;
 }
