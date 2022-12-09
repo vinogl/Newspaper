@@ -6,7 +6,13 @@ def download_feeds(json_path):
     """
     下载rss_feed订阅源到本地
     """
+    if not os.path.exists(json_path["feeds"]):
+        """若没有feeds路径，创建feeds路径"""
+        os.mkdir(json_path["feeds"])
+        print('创建路径 \"%s\"' % json_path["feeds"])
+
     feed_list = get_json(path=json_path["feed_list"])  # 获取RSS的订阅源信息
+
     for key, value in feed_list.items():
         """将订阅内容下载到本地"""
         get_feed(url=value, path=os.path.join(json_path["feeds"], key + '.json'))
@@ -17,10 +23,14 @@ def remove_feeds(json_path):
     删除本地的rss_feed订阅源
     """
     for root, dirs, files in os.walk(json_path["feeds"]):
+
         for file in files:
             file_path = os.path.join(root, file)
             os.remove(file_path)
             print('已删除 \"%s\"' % file_path)
+
+        os.rmdir(root)
+        print('删除路径 \"%s\"' % root)
 
 
 if __name__ == '__main__':

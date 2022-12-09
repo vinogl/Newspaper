@@ -88,6 +88,11 @@ def home_page(feed_key):
 
     feed_path = os.path.join(json_path["feeds"], feed_key + '.json')  # 已下载订阅的路径
 
+    if not os.path.exists(json_path["feeds"]):
+        """若没有feeds路径，创建feeds路径"""
+        os.mkdir(json_path["feeds"])
+        print('创建路径 \"%s\"' % json_path["feeds"])
+
     if not os.path.exists(feed_path) or refresh is not None:
         """若还未下载订阅源到本地，或者提交了更新表单，则执行下载操作"""
         get_feed(url=feed_list[feed_key], path=feed_path)
