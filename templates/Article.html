@@ -15,7 +15,7 @@
 <body>
 <div class="head">
     <header>
-        <a href="/{{ original_link }}">{{ feed_key }}</a>
+        <a title="{{ original_link }}" href="{{ original_link }}">{{ feed_key }}</a>
     </header>
     {# 子标题 #}
     <div class="subhead">
@@ -24,7 +24,7 @@
             <a href="{{ page_info.github }}" title="{{ page_info.github }}" class="fa fa-github"></a>
             {# form表单，便于在文章页面切换文章，'id'用于在js中获取该form标签 #}
             <form id="form_submit" method="post" class="select_form">
-                <label class="fa fa-hashtag">
+                <label title="{{ page_info.amount }}" class="fa fa-hashtag">
                     {# 'name'用于在'app.py'中提取select标签的选中值，'onchange'当select标签内容变化调用该方法 #}
                     <select name="art_id" onchange="auto_submit()">
                         {% for art in articles %}
@@ -49,7 +49,7 @@
         <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
         <div>
             {# 原文地址的链接 #}
-            <a href="{{ article.link }}" class="fa fa-paperclip">
+            <a title="{{ article.link }}" href="{{ article.link }}" class="fa fa-paperclip">
                 {{ page_info.link_to_origin }}
             </a>
         </div>
@@ -61,7 +61,7 @@
     <div class="article_head">
         <p>
             {# 文章的标题 #}
-            <a class="article_title" href="{{ article.link }}">{{ article.title }}</a>
+            <a class="article_title" title="{{ article.link }}" href="{{ article.link }}">{{ article.title }}</a>
         </p>
         {# 文章的发布时间 #}
         <p>{{ article.time }}</p>

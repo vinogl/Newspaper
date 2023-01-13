@@ -24,7 +24,7 @@
                 <button class="fa fa-rotate-right" title="{{ page_info.refresh }}" name="refresh" value=1></button>
             </form>
             <a href="{{ page_info.github }}" title="{{ page_info.github }}" class="fa fa-github"></a>
-            <i class="fa fa-hashtag">{{ articles | length }}</i>
+            <i title="{{ page_info.amount }}" class="fa fa-hashtag">{{ articles | length }}</i>
         </div>
         {# 显示当前时间 #}
         <div id="times"><i class="fa fa-spinner fa-pulse"></i></div>
